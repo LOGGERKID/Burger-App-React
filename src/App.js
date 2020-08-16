@@ -13,7 +13,7 @@ export default class App extends Component {
     return (
       <div>
         <div className={classes.App}>
-          <h1>Assignment 1</h1>
+          <h1>Burger King</h1>
 
         </div>
       </div>
