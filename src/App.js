@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./App.css";
+import classes from "./App.css";
 import AppCycle from "./Components/AppLifeCycle/containers/AppCycle";
 
 // import Assignment1 from './Components/Assignment1/Assignment1';
@@ -12,7 +12,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <div className="App">
+        <div className={classes.App}>
           <h1>Assignment 1</h1>
           <AppCycle />
         </div>
