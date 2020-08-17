@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import Aux from "../../hoc/Aux";
 import Burger from "../../components/Burger/Burger";
 import BuildControls from "../../components/Burger/BuildControls/BuildControls";
+import Modal from '../../components/UI/Modal/Modal'
+import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary'
 
 const INGREDIENTS_PRICE = {
   Salad: 0.4,
   Meat: 1.3,
   Cheese: 0.7,
-  Bacon: 0.1,
+  Bacon: 0.2,
 };
 class BurgerBuilder extends Component {
   constructor(props) {
@@ -52,6 +54,7 @@ class BurgerBuilder extends Component {
     });
     this.updatePurchaseState( updatedIngredients )
   }
+  
   removeIngredientHandler(type) {
     //Update the ingredients count
     console.log(this.state);
@@ -84,6 +87,9 @@ class BurgerBuilder extends Component {
       }
     return (
       <Aux>
+        <Modal>
+            <OrderSummary price={this.state.totalPrice} ingredients={this.state.ingredients}/>
+        </Modal>
         <Burger ingredients={this.state.ingredients} />
         <BuildControls
           ingredientsAdded={this.addIngredientsHandler.bind(this)}
