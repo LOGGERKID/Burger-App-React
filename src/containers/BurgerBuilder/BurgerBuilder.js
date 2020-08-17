@@ -14,10 +14,10 @@ class BurgerBuilder extends Component {
     super(props);
     this.state = {
       ingredients: {
-        Salad: 1,
-        Bacon: 1,
+        Salad: 0,
+        Bacon: 0,
         Cheese: 0,
-        Meat: 1,
+        Meat: 0,
       },
       totalPrice: 4,
     };
@@ -56,7 +56,7 @@ class BurgerBuilder extends Component {
     //Update the price
     const oldPrice = this.state.totalPrice;
     const removePrice = INGREDIENTS_PRICE[type];
-    const currentPrice = oldPrice + removePrice;
+    const currentPrice = oldPrice - removePrice;
     this.setState({
       ingredients: updatedIngredients,
       totalPrice: currentPrice,
@@ -76,6 +76,8 @@ class BurgerBuilder extends Component {
         <BuildControls
           ingredientsAdded={this.addIngredientsHandler.bind(this)}
           ingredientsRemoved={this.removeIngredientHandler.bind(this)}
+          price={this.state.totalPrice}
+          disabled={disabledInfo}
         />
       </Aux>
     );
