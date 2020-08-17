@@ -8,7 +8,7 @@
     top: 30%;
     left: 15%;
     box-sizing: border-box;
-    transition: all 0.3s cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transition: all 0.3s ease-in-out;
 }
 
 @media (min-width:600px){
