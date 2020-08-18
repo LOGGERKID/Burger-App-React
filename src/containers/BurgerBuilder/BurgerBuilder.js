@@ -31,7 +31,7 @@ class BurgerBuilder extends Component {
     }
 
     componentDidMount () {
-        axios.get( 'https://react-my-burger.firebaseio.com/ingredients.json' )
+        axios.get( 'https://burger-app-react-4c508.firebaseio.com/ingredients.json' )
             .then( response => {
                 this.setState( { ingredients: response.data } );
             } )
@@ -97,13 +97,13 @@ class BurgerBuilder extends Component {
             ingredients: this.state.ingredients,
             price: this.state.totalPrice,
             customer: {
-                name: 'Max Schwarzmüller',
+                name: 'Revanth MS',
                 address: {
                     street: 'Teststreet 1',
-                    zipCode: '41351',
-                    country: 'Germany'
+                    zipCode: '560058',
+                    country: 'IN'
                 },
-                email: 'test@test.com'
+                email: 'revanth.com'
             },
             deliveryMethod: 'fastest'
         }
