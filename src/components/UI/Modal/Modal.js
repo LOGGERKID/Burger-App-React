@@ -5,7 +5,7 @@ import BackDrop from "../Backdrop/BackDrop";
 
 const Modal = (props) => (
   <Aux>
-    <BackDrop show={props.show} canceled={props.cancelPurchase}/>
+    <BackDrop show={props.show} canceled={props.clicked}/>
     <div
       className={classes.Modal}
       style={{

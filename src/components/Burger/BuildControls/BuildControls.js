@@ -10,7 +10,6 @@ const controls = [
 ];
 
 const BuildControls = (props) => {
-  console.log(props);
   return (
     <div className={classes.BuilldControls}>
       <p>Current Price: {props.price.toFixed(2)}</p>

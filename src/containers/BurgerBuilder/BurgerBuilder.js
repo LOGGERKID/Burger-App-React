@@ -4,6 +4,8 @@ import Burger from "../../components/Burger/Burger";
 import BuildControls from "../../components/Burger/BuildControls/BuildControls";
 import Modal from "../../components/UI/Modal/Modal";
 import OrderSummary from "../../components/Burger/OrderSummary/OrderSummary";
+import axios from '../../axios-orders'
+import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler'
 
 const INGREDIENTS_PRICE = {
   Salad: 0.4,
@@ -40,7 +42,6 @@ class BurgerBuilder extends Component {
 
   addIngredientsHandler(type) {
     //Update the ingredients count
-    console.log(this.state);
     const addCount = this.state.ingredients[type] + 1;
     const updatedIngredients = {
       ...this.state.ingredients,
@@ -60,7 +61,6 @@ class BurgerBuilder extends Component {
 
   removeIngredientHandler = (type) => {
     //Update the ingredients count
-    console.log(this.state);
     const removeCount = this.state.ingredients[type] - 1;
     if (removeCount < 0) {
       return;
@@ -88,7 +88,27 @@ class BurgerBuilder extends Component {
     this.setState({ purchasing: false });
   };
   continuePurchase = () => {
-    alert("Please continue with the purchase");
+    const order = {
+      ingredients: this.state.ingredients,
+      totalPrice: this.state.totalPrice,
+      customer:{
+        name:"Revanth MS",
+        age: 34,
+        address: {
+          street: "17th A Cross",
+          region: "Laggere Main Road",
+          district: "BA",
+          country: "IN"
+        }
+      },
+      deliveryMode: "fastest",
+      paymentMethod: "COD"
+    }
+    axios.post('/orders.json',order).then(res =>{
+      console.log(res)
+    }).catch(e =>{
+      console.log(e)
+    })
     this.cancelPurchase();
   };
 
@@ -103,7 +123,7 @@ class BurgerBuilder extends Component {
       <Aux>
         <Modal
           show={this.state.purchasing}
-          cancelPurchase={this.cancelPurchase}
+          clicked={this.cancelPurchase}
         >
           <OrderSummary
             canceled={this.cancelPurchase}
@@ -126,4 +146,4 @@ class BurgerBuilder extends Component {
   }
 }
 
-export default BurgerBuilder;
+export default withErrorHandler( BurgerBuilder, axios);
